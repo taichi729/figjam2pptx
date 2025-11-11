@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FigJam to PowerPoint</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 6px;
+      background: #f5f5f5;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .status.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .status.processing {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .info-box {
+      padding: 12px;
+      border-radius: 6px;
+      background: #f5f5f5;
+      font-size: 11px;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button.primary {
+      background: #18a0fb;
+      color: white;
+    }
+
+    button.primary:hover {
+      background: #0d8adb;
+    }
+
+    button.primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    button.secondary:hover {
+      background: #e5e5e5;
+    }
+
+    .format-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .format-option {
+      flex: 1;
+      padding: 8px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .format-option:hover {
+      border-color: #18a0fb;
+    }
+
+    .format-option.selected {
+      border-color: #18a0fb;
+      background: #e3f2fd;
+    }
+
+    .format-option input[type="radio"] {
+      display: none;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #18a0fb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    pre {
+      margin: 8px 0 0 0;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      font-size: 10px;
+      max-height: 150px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>FigJam to PowerPoint</h1>
+      <div class="subtitle">Export your FigJam selection to PowerPoint format</div>
+    </div>
+
+    <div class="content">
+      <div id="status" class="status">
+        Select objects in FigJam and click "Export to PowerPoint"
+      </div>
+
+      <div id="infoBox" class="info-box hidden">
+        <strong>Exported Data:</strong>
+        <div id="infoContent"></div>
+      </div>
+
+      <div class="format-selector">
+        <label class="format-option selected">
+          <input type="radio" name="format" value="json" checked>
+          <div>JSON</div>
+        </label>
+        <label class="format-option">
+          <input type="radio" name="format" value="xml">
+          <div>PowerPoint XML</div>
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button id="exportBtn" class="primary">
+          Export to PowerPoint
+        </button>
+        <button id="closeBtn" class="secondary">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+</body>
+</html>

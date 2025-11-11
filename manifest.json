@@ -1,0 +1,12 @@
+{
+  "name": "FigJam to PowerPoint",
+  "id": "figjam2pptx",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "editorType": ["figjam"],
+  "ui": "dist/ui.html",
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": []
+  }
+}

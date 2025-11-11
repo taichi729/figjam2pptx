@@ -1,0 +1,17 @@
+{
+  "name": "figjam2pptx",
+  "version": "1.0.0",
+  "description": "FigJam plugin to export content to PowerPoint format",
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.ui.json",
+    "watch": "concurrently \"tsc -w\" \"tsc -p tsconfig.ui.json -w\""
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.90.0",
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  }
+}
